@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html manifest="textboxmanifest.php">
+<head>
+	<title>text</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="apple-touch-icon-precomposed" href="textbox.png" />
+	<link rel="icon" href="textbox.png" type="image/png" />
+	<style type="text/css">
+		html, body{width: 100%; padding: 0; margin: 0;}
+		#textbox {width: 100%; padding: 0; border: 0; border-bottom: 1px #777 solid; font-family:"Courier New", Courier, monospace; font-size: 18px;}
+	</style>
+  <script type="text/javascript">
+		function onK(){
+			var box = document.getElementById('textbox');
+			localStorage.setItem("notes", box.value);
+                        box.style.height = (parseFloat(box.style.height.substr(0, box.style.height.length - 2))- 20)  + "px";
+			box.style.height = box.scrollHeight + "px";
+		}
+		function onO(){
+			var box = document.getElementById('textbox');
+			box.style.width = "100%";			
+		}
+	</script>
+</head>
+<body onorientationchange="onO()">
+	<textarea id="textbox" onkeyup="onK()"></textarea>
+  <script type="text/javascript">
+		if (localStorage.getItem("notes")){
+			var box = document.getElementById('textbox');
+			box.value = localStorage.getItem("notes");
+			box.style.height = box.scrollHeight + "px";
+		}
+	</script>
+</body>
+</html>
